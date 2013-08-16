@@ -6,7 +6,7 @@
 <!--[if IE 8]>
 <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<html class="no-js" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/anketa.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=latin,cyrillic-ext,latin-ext,cyrillic'
+          rel='stylesheet' type='text/css'>
 
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
@@ -25,8 +28,202 @@
     your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
     improve your experience.</p>
 <![endif]-->
+<div class="container">
+    <header>
+        <div class="title">Анкета второй Школы разработки интерфейсов в Москве</div>
 
+        <p>Яндекс открывает набор во вторую Школу разработки интерфейсов в Москве.</p>
 
+        <p>Для поступления необходимо заполнить анкету с тестовыми заданиями. Приём заявок закрывается 19 августа в
+            23:59 по московскому времени. По результатам теста мы пригласим в Школу 30-40 человек.</p>
+
+        <p>Подробности о Школе читайте на <a href="http://company.yandex.ru/job/vacancies/shri_2013.xml">этой
+            странице</a>.</p>
+    </header>
+
+    <form class="task-list" id="anketa">
+
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 1</span>
+            <span class="task__text">Год рождения.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 2</span>
+            <span class="task__text">Город, в котором вы живёте.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 3</span>
+            <span class="task__text">Вуз, факультет, специальность, кафедра.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 4</span>
+            <span class="task__text">Год окончания вуза.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 5</span>
+            <span class="task__text">Уровень владения английским языком:</span>
+
+            <div class="task__input">
+                <p><input type="checkbox" name="q5" value="2" id="a5_2"><label for="a5_2">&nbsp;средний;</label></p>
+
+                <p><input type="checkbox" name="q5" value="2" id="a5_2"><label for="a5_2">&nbsp;средний;</label></p>
+
+                <p><input type="checkbox" name="q5" value="2" id="a5_2"><label for="a5_2">&nbsp;средний;</label></p>
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 6</span>
+            <span class="task__text">Чего вы ожидаете от участия в Школе?</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 7</span>
+            <span class="task__text">Откуда вы о нас узнали?</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 8</span>
+            <span class="task__text">Сколько времени вы были бы готовы уделять стажировке или работе в Яндексе?</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 9</span>
+            <span class="task__text">Расскажите о вашем опыте разработки. Нам будет интересно всё — как серьезный интерфейс, так и просто домашняя страничка.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 10</span>
+            <span class="task__text">Если вы где-нибудь работали, расскажите, какие у вас были должностные обязанности и был ли опыт работы в команде.</span>
+
+            <div class="task__input">
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 11</span>
+            <span class="task__text">Перечислите, какими программными продуктами вы пользуетесь в своей работе — от редактора до специализированных утилит (Intellij Idea, Node.js, Uglify.js, GNU Make). Для каждого инструмента укажите, какие задачи вы с помощью него решаете и почему выбрали именно его.</span>
+
+            <div class="task__input">
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 12</span>
+            <span class="task__text">Пользуетесь ли вы командной строкой? Какими командами вы пользуетесь и какие задачи вы решаете с их помощью? С какими программами вы преимущественно или полностью взаимодействуете через интерфейс командной строки?</span>
+
+            <div class="task__input">
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 13</span>
+            <span class="task__text">Напишите на JavaScript функцию, которая выводит список всех чисел, которые равны сумме факториалов своих цифр. Пример такого числа:
+         4! + 0! + 5! + 8! + 5! = 40585
+В качестве ответа на вопрос пришлите ссылку на http://jsfiddle.net/ с вашим кодом или на ваш репозиторий на https://github.com/.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 14</span>
+            <span class="task__text">Вы — пилот грузового межгалактического корабля. Ваша работа — перевозка грузов с одной планету на другую. Грузоподъемность вашего корабля ограничена, поэтому за один рейс вы можете перевезти не более N кг полезного груза. Ваш корабль умеет сообщать свое состояние (местоположение и степень загруженности), а также летать в любую точку пространства. Каждая планета может содержать на себе груз, который можно взять. Также на каждой планете груз можно оставить .
+
+Задание
+
+Даны незавершенные интерфейсы корабля и планеты. Напишите недостающий код.
+
+Полное условие задачи доступно на
+
+https://github.com/yandex-shri/introtask-space.
+
+В качестве ответа на вопрос пришлите ссылку на http://jsfiddle.net/ с вашим кодом или на ваш репозиторий на https://github.com/.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="task">
+            <div class="progress-indicator"></div>
+            <span class="task__number">Вопрос 15</span>
+            <span class="task__text">Сверстайте форму-анкету с нашими заданиями для кандидатов. Страница должна работать в следующих браузерах: MSIE (8, 9, 10), Google Chrome (26, 27), Firefox (20, 21), Opera (12.15, 12.14), Яндекс.Браузер 1.5. По возможности используйте приёмы безопасной деградации CSS. Страница должна содержать интерактив, реализованный с помощью JS и jQuery. Это может быть:
+
+проверка полноты и правильности заполнения полей (где это возможно);
+
+возможность свернуть и развернуть разделы (аккордеон);
+
+индикатор заполнения анкеты;
+
+что-нибудь ещё.
+
+Подумайте над тем, как эти данные будут отправляться на сервер.
+
+Будет плюсом, если вы сверстаете страницу, используя БЭМ.
+
+Дополнительные задания
+
+1. Выполните задание про форму-анкету, используя один из классических шаблонизаторов: Handlebars, mustache, Dust, Jade и т.п.
+
+2. Выполните задание про форму-анкету, используя один из экзотических шаблонизаторов: XSLT, YATE, BEMHTML и т.п.
+
+Разработку необходимо вести на https://github.com/. В качестве ответа на вопрос пришлите ссылку на проект.</span>
+
+            <div class="task__input">
+                <input type="text">
+            </div>
+        </div>
+        <div class="btn">
+            <input type="submit" value="Отправить!" class="">
+
+            <div class="progress-indicator"></div>
+            </input>
+        </div>
+    </form>
+
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="js/main.js"></script>
