@@ -1,3 +1,5 @@
+var needToFillAllOfThem = true;
+
 $('.tasks__task').click(function () {
     var task_text = $(this).find('.task__text');
 
@@ -12,6 +14,7 @@ $('.tasks__task').click(function () {
 
         $(this).removeClass('collapsed');
         $(task_text).css('white-space', 'initial');
+        $(this).find('input').focus();
     }
 })
 
@@ -45,11 +48,8 @@ $('#tasks-form').submit(function () {
 
     var result = checkForm();
 
-    $('.tasks__button').removeClass('error').removeClass('success');
     if (result) {
         result.focus();
-        $('.tasks__button > input').val('Есть ошибки в заполнении')
-        $('.tasks__button').addClass('error');
         $(result).closest('.tasks__task').addClass('error').removeClass('collapsed')
         return false;
     }
@@ -60,17 +60,20 @@ $('#tasks-form').submit(function () {
 })
 
 function checkForm() {
+
     var foundErrorFlag = 0;
     var errorElement = null;
 
-    $('.tasks__button').removeClass('success').removeClass('error');
-    $('.tasks__button > input').val('Заполните анкету');
+    $('input, textarea').each(function () {
 
-    $('input').each(function () {
-        if (foundErrorFlag == 0) {
-            foundErrorFlag = isValidInputValue(this);
+        var tmp = isValidInputValue(this);
+        if ((foundErrorFlag == 0) || (tmp > foundErrorFlag)) {
+            foundErrorFlag = tmp;
             errorElement = this;
         }
+
+        if ((foundErrorFlag == 1) && (!needToFillAllOfThem))
+            foundErrorFlag = 0;
 
     })
 
@@ -80,10 +83,12 @@ function checkForm() {
             $('.tasks__button > input').val('Отправить!');
             break;
 
-        case -1:
+        case 1:
+            $('.tasks__button').removeClass('success').removeClass('error');
+            $('.tasks__button > input').val('Заполните анкету');
             break;
 
-        case 1:
+        case 2:
             $('.tasks__button').addClass('error');
             $('.tasks__button > input').val('Есть ошибки');
             break;
@@ -99,13 +104,16 @@ function checkFormSilent() {
 
     var foundErrorFlag = 0;
 
-    $('.tasks__button').removeClass('success').removeClass('error');
-    $('.tasks__button > input').val('Заполните анкету');
 
-    $('input').each(function () {
-        if (foundErrorFlag == 0) {
-            foundErrorFlag = isValidInputValue(this);
+    $('input, textarea').each(function () {
+        var tmp = isValidInputValue(this);
+        if ((foundErrorFlag == 0) || (tmp > foundErrorFlag)) {
+            foundErrorFlag = tmp;
+            console.log(foundErrorFlag);
         }
+
+        if ((foundErrorFlag == 1) && (!needToFillAllOfThem))
+            foundErrorFlag = 0;
 
     })
 
@@ -115,10 +123,12 @@ function checkFormSilent() {
             $('.tasks__button > input').val('Отправить!');
             break;
 
-        case -1:
+        case 1:
+            $('.tasks__button').removeClass('success').removeClass('error');
+            $('.tasks__button > input').val('Заполните анкету');
             break;
 
-        case 1:
+        case 2:
             $('.tasks__button').addClass('error');
             $('.tasks__button > input').val('Есть ошибки');
             break;
@@ -127,17 +137,18 @@ function checkFormSilent() {
 }
 
 function redrawTask(element) {
+
     checkFormSilent();
-    $(element).closest('.tasks__task').removeClass('success').removeClass('error');
     switch (isValidInputValue(element)) {
         case 0:
             $(element).closest('.tasks__task').addClass('success');
             break;
 
-        case -1:
+        case 1:
+            $(element).closest('.tasks__task').removeClass('success').removeClass('error');
             break;
 
-        case 1:
+        case 2:
             $(element).closest('.tasks__task').addClass('error');
             break;
 
@@ -146,7 +157,7 @@ function redrawTask(element) {
 
 function isValidInputValue(element) {
     if ($(element).val() == '') {
-        return -1;
+        return 1;
     }
     else {
         switch (element.id) {
@@ -155,24 +166,24 @@ function isValidInputValue(element) {
                     if (($(element).val() > 1940) && ($(element).val() < new Date().getFullYear()))
                         return 0;
                     else
-                        return 1;
+                        return 2;
 
                 }
                 else {
-                    return 1;
+                    return 2;
                 }
                 break;
 
             case "q4":
                 if (!isNaN($(element).val())) {
-                    if ($(element).val() < new Date().getFullYear())
+                    if ($(element).val() > 1940)
                         return 0;
                     else
-                        return 1;
+                        return 2;
 
                 }
                 else {
-                    return 1;
+                    return 2;
                 }
                 break;
 
@@ -181,7 +192,7 @@ function isValidInputValue(element) {
                     return 0;
                 }
                 else {
-                    return 1;
+                    return 2;
                 }
                 break;
 
@@ -190,15 +201,20 @@ function isValidInputValue(element) {
                     return 0;
                 }
                 else {
-                    return 1;
+                    return 2;
                 }
                 break;
             case "a5_1", "a5_2", "a5_3":
-                if ($('#a5_1').prop("checked") || $('#a5_2').prop("checked") || $('#a5_3').prop("checked")) {
-                    return 0;
+                if (!$('#a5_1').prop("checked") && !$('#a5_2').prop("checked") && !$('#a5_3').prop("checked")) {
+                    return 1;
                 }
                 else {
-                    return 1;
+                    if ($('#a5_1').prop("checked") || $('#a5_2').prop("checked") || $('#a5_3').prop("checked")) {
+                        return 0;
+                    }
+                    else {
+                        return 2;
+                    }
                 }
                 break;
 
@@ -208,3 +224,41 @@ function isValidInputValue(element) {
         }
     }
 }
+
+function openAllQuestions() {
+    $('.tasks__task').each(function () {
+        $(this).removeClass('collapsed');
+
+    });
+    return false;
+}
+
+function closeAllQuestions() {
+    $('.tasks__task').each(function () {
+        $(this).addClass('collapsed');
+    })
+
+    return false;
+}
+
+function clearForm() {
+    $('input[type="text"], textarea').each(function () {
+        $(this).val('');
+    })
+
+    $('#a5_1').prop("checked", false);
+    $('#a5_2').prop("checked", false);
+    $('#a5_3').prop("checked", false);
+
+    $('.tasks__task').each(function () {
+        $(this).removeClass('success').removeClass('error');
+    })
+    checkFormSilent();
+    return false;
+}
+
+$(function () {
+    $('#q1').focus();
+    checkFormSilent();
+})
+

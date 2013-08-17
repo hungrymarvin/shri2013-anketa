@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>Анкета второй Школы разработки интерфейсов в Москве</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -41,8 +41,12 @@
             странице</a>.</p>
     </div>
 </div>
-
-<form class="tasks" id="tasks-form">
+<div class="controls">
+    <a href="#" class="controls__link" onclick="openAllQuestions()">Раскрыть все</a>
+    <a href="#" class="controls__link" onclick="closeAllQuestions()">Закрыть все</a>
+    <a href="#" class="controls__link" onclick="clearForm()">Очистить форму</a>
+</div>
+<form class="tasks" id="tasks-form" method="POST">
 
 <div class="tasks__task">
     <div class="task__progress-indicator"></div>
@@ -54,7 +58,7 @@
         <input type="text" name="q1" id="q1">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 2</span>
 
@@ -64,7 +68,7 @@
         <input type="text" name="q2" id="q2">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 3</span>
 
@@ -74,7 +78,7 @@
         <input type="text" name="q3" id="q3">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 4</span>
 
@@ -84,7 +88,7 @@
         <input type="text" name="q4" id="q4">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 5</span>
 
@@ -99,7 +103,7 @@
             владение</label></p>
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 6</span>
 
@@ -109,7 +113,7 @@
         <input type="text" name="q6" id="q6">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 7</span>
 
@@ -119,7 +123,7 @@
         <input type="text" name="q7" id="q7">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 8</span>
 
@@ -130,7 +134,7 @@
         <input type="text" name="q8" id="q8">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 9</span>
 
@@ -141,7 +145,7 @@
         <textarea rows="3" name="q9" id="q9"></textarea>
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 10</span>
 
@@ -152,7 +156,7 @@
         <textarea rows="3" name="q10" id="q10"></textarea>
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 11</span>
 
@@ -164,7 +168,7 @@
         <textarea rows="3" name="q11" id="q11"></textarea>
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 12</span>
 
@@ -176,9 +180,9 @@
         <textarea rows="3" name="q12" id="q12"></textarea>
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
-    <span class="task__number">Вопрос 13</span>
+    <span class="task__number">Вопрос 13</span> <i>(практическое задание 1)</i>
 
     <div class="task__text">
         <p>
@@ -206,9 +210,9 @@
         <input type="text" name="q13" id="q13">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
-    <span class="task__number">Вопрос 14</span>
+    <span class="task__number">Вопрос 14</span> <i>(практическое задание 2)</i>
 
     <div class="task__text">
         <p>
@@ -234,17 +238,19 @@
             Полное условие задачи доступно на
 
             <a href="https://github.com/yandex-shri/introtask-space">https://github.com/yandex-shri/introtask-space</a>.
-            В качестве ответа на вопрос пришлите ссылку на <a href="http://jsfiddle.net/">http://jsfiddle.net/</a> с
-            вашим кодом или на ваш репозиторий на <a href="https://github.com/">https://github.com/</a>.</span>
+        </p>
+
+        <p> В качестве ответа на вопрос пришлите ссылку на <a href="http://jsfiddle.net/">http://jsfiddle.net/</a> с
+            вашим кодом или на ваш репозиторий на <a href="https://github.com/">https://github.com/</a>.
         </p>
     </div>
     <div class="task__input">
         <input type="text" name="14" id="q14">
     </div>
 </div>
-<div class="tasks__task">
+<div class="tasks__task collapsed ">
     <div class="task__progress-indicator"></div>
-    <span class="task__number">Вопрос 15</span>
+    <span class="task__number">Вопрос 15</span> <i>(практическое задание 3)</i>
 
     <div class="task__text"><p>Сверстайте форму-анкету с нашими заданиями для кандидатов. Страница должна
         работать в следующих браузерах: MSIE (8, 9, 10), Google Chrome (26, 27), Firefox (20, 21), Opera (12.15,

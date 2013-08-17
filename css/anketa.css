@@ -3,6 +3,7 @@
     margin: 0 auto;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
+    padding: 50px 0;
 }
 
 .tasks {
@@ -58,7 +59,7 @@
 
 .tasks__task.collapsed >.task__text {
 
-    max-height: 40px;
+    max-height: 0px;
     -webkit-transition: max-height 0.3s ease-out;
     -moz-transition: max-height 0.3s ease-out;
     transition: max-height 0.3s ease-out;
@@ -174,4 +175,17 @@ textarea {
 
 .tasks__button.success input[type='submit'] {
     background-color: #5eb95e;
+}
+
+.controls {
+    text-align: right;
+}
+
+.controls__link {
+    font-size: 12px;
+    padding: 5px;
+}
+
+a.controls__link {
+    color: #dedede;
 }
