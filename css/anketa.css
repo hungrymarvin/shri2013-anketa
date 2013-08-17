@@ -5,12 +5,12 @@
     font-weight: 400;
 }
 
-.task-list {
+.tasks {
 
     margin: 0 auto;
 }
 
-.task {
+.tasks__task {
     border: 1px #dedede solid;
     padding: 10px;
     margin-bottom: 10px;
@@ -24,7 +24,7 @@
 
 }
 
-.task > .task__input {
+.tasks__task > .task__input {
     max-height: 250px;
     -webkit-transition: max-height 0.3s ease-in;
     -moz-transition: max-height 0.3s ease-in;
@@ -32,7 +32,7 @@
 
 }
 
-.task.collapsed > .task__input {
+.tasks__task.collapsed > .task__input {
     max-height: 0px;
     -webkit-transition: max-height 0.3s ease-out;
     -moz-transition: max-height 0.3s ease-out;
@@ -44,24 +44,28 @@
 }
 
 .task__text {
-    display: block;
-    max-height: 400px;
+    max-height: 600px;
+    overflow: hidden;
     -webkit-transition: max-height 0.3s ease-in;
     -moz-transition: max-height 0.3s ease-in;
     transition: max-height 0.3s ease-in;
 }
 
-.task.collapsed >.task__text {
-    overflow: hidden;
+.task__text p {
     text-overflow: ellipsis;
-    max-height: 25px;
+    overflow: hidden;
+}
+
+.tasks__task.collapsed >.task__text {
+
+    max-height: 40px;
     -webkit-transition: max-height 0.3s ease-out;
     -moz-transition: max-height 0.3s ease-out;
     transition: max-height 0.3s ease-out;
 
 }
 
-.progress-indicator {
+.task__progress-indicator {
     height: 100%;
     padding-bottom: 20px;
     width: 11px;
@@ -78,19 +82,24 @@
     transition: background-color 500ms linear;
 }
 
-.task.success > .progress-indicator {
-    background-color: #5eb95e;
+.task__progress-indicator.short {
+    padding-bottom: 0px;
+    margin-top: 0px;
 }
 
-.task.pending > .progress-indicator {
+.pending > .task__progress-indicator {
     background-color: #faa732;
 }
 
-.task.error > .progress-indicator {
+.error > .task__progress-indicator {
     background-color: #dd514c;
 }
 
-header .title {
+.success > .task__progress-indicator {
+    background-color: #5eb95e;
+}
+
+.header__title {
     font-weight: 400;
     font-size: 45px;
 }
@@ -134,19 +143,19 @@ textarea {
     box-sizing: border-box;
 }
 
-.btn {
+.tasks__button {
     position: relative;
+    border: 1px solid #dedede;
 }
 
-.btn > input {
+.tasks__button > input {
     width: 100%;
     height: 74px;
     background: #4bb1cf;
     color: white;
     font-size: 50px;
     text-align: center;
-
-    border: 1px solid #FFF;
+    border: none;
     cursor: pointer;
     -webkit-transition: background-color 500ms linear;
     -moz-transition: background-color 500ms linear;
@@ -155,29 +164,14 @@ textarea {
     transition: background-color 500ms linear;
 }
 
-.btn:hover {
+.tasks__button:hover {
     color: #b3d4fc;
 }
 
-.btn .progress-indicator {
-    height: 72px;
-    left: -10px;
-    padding-bottom: 0;
-    margin-top: 1px;
-}
-
-#anketa.error input[type='submit'] {
+.tasks__button.error input[type='submit'] {
     background-color: #dd514c;
 }
 
-#anketa.success input[type='submit'] {
-    background-color: #5eb95e;
-}
-
-#anketa.error .btn .progress-indicator {
-    background-color: #dd514c;
-}
-
-#anketa.success .btn .progress-indicator {
+.tasks__button.success input[type='submit'] {
     background-color: #5eb95e;
 }
