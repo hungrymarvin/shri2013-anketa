@@ -40,7 +40,10 @@ $('input, textarea').keyup(function () {
 
 $('input, textarea').focus(function () {
 
-    $(this).closest('.tasks__task').addClass('pending').removeClass('collapsed');
+    var task = $(this).closest('.tasks__task');
+
+    $(task).addClass('pending').removeClass('collapsed');
+    $(task).next().removeClass('collapsed');
     redrawTask(this);
 })
 
@@ -115,7 +118,6 @@ function checkFormSilent() {
         var tmp = isValidInputValue(this);
         if ((foundErrorFlag == 0) || (tmp > foundErrorFlag)) {
             foundErrorFlag = tmp;
-            console.log(foundErrorFlag);
         }
 
         if ((foundErrorFlag == 1) && (!needToFillAllOfThem))

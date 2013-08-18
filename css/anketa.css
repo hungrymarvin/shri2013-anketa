@@ -81,6 +81,7 @@
     -o-transition: background-color 500ms linear;
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
+
 }
 
 .task__progress-indicator.short {
