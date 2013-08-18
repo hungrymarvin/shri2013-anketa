@@ -178,13 +178,25 @@ textarea {
 
 .controls {
     text-align: right;
+    padding: 0 5px;
 }
 
 .controls__link {
     font-size: 12px;
-    padding: 5px;
+
 }
 
-a.controls__link {
+.controls__link {
     color: #dedede;
+    border-bottom: #dedede dashed 1px;
+    text-decoration: none;
+    height: 11px;
+    padding: 5px 0;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.controls__link:hover {
+    color: #D0D0D0;
+    border-bottom: #D0D0D0 dashed 1px;
 }
