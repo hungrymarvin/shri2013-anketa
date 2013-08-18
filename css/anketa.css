@@ -59,7 +59,8 @@
 
 .tasks__task.collapsed >.task__text {
 
-    max-height: 0px;
+    max-height: 40px;
+    white-space: nowrap;
     -webkit-transition: max-height 0.3s ease-out;
     -moz-transition: max-height 0.3s ease-out;
     transition: max-height 0.3s ease-out;
