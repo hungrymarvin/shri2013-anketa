@@ -166,7 +166,8 @@ function redrawTask(element) {
 }
 
 function isValidInputValue(element) {
-    if (($(element).val() == '') || ($(element).val().length < 3)) {
+
+    if (($(element).val() == '') || ($(element).attr('type') != 'radio' ? $(element).val().length < 3 : !$(element).prop("checked"))) {
         return 1;
     }
     else {
