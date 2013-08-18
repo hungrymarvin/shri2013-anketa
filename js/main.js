@@ -35,7 +35,8 @@ $('input[type="radio"]').click(function () {
 
 $('input, textarea').keyup(function () {
 
-    //redrawTask(this);
+    if ($(this).closest('.tasks__task').hasClass('error'))
+        redrawTask(this);
 
 })
 
@@ -51,7 +52,7 @@ $('input, textarea').focusout(function () {
 
     $(this).closest('.tasks__task').removeClass('pending');
     if (redrawTask(this) == 2)
-        $(this).focus().addClass('pending');
+        $(this).focus().select();
 })
 
 $('#tasks-form').submit(function () {
@@ -59,7 +60,7 @@ $('#tasks-form').submit(function () {
     var result = checkForm();
 
     if (result) {
-        result.focus();
+        result.focus().select();
         $(result).closest('.tasks__task').addClass('error').removeClass('collapsed')
         return false;
     }
