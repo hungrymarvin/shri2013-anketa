@@ -1,3 +1,9 @@
+var source = $("#tasks__task-template").html();
+var template = Handlebars.compile(source);
+var result = template(data);
+
+$('#tasks-form').prepend(result);
+
 var needToFillAllOfThem = true;
 
 $('.tasks__task').click(function () {
@@ -34,7 +40,7 @@ $('input, textarea').keyup(function () {
 
 $('input, textarea').focus(function () {
 
-    $(this).closest('.tasks__task').addClass('pending');
+    $(this).closest('.tasks__task').addClass('pending').removeClass('collapsed');
     redrawTask(this);
 })
 

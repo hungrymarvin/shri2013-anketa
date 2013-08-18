@@ -47,7 +47,7 @@
     <a href="#" class="controls__link" onclick="clearForm()">Очистить форму</a>
 </div>
 <form class="tasks" id="tasks-form" method="POST">
-
+<!--
 <div class="tasks__task">
     <div class="task__progress-indicator"></div>
     <span class="task__number">Вопрос 1</span>
@@ -297,7 +297,9 @@
     <div class="task__input">
         <input type="text" name="q15" id="q15">
     </div>
+
 </div>
+-->
 <div class="tasks__button">
     <div class="task__progress-indicator short"></div>
     <input type="submit" value="Заполните анкету">
@@ -307,7 +309,23 @@
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="js/handlebars.js"></script>
+<script src="js/data.js"></script>
+<script id="tasks__task-template" type="text/x-handlebars-template">
+    {{#tasks}}
+    <div class="tasks__task collapsed">
+        <div class="task__progress-indicator"></div>
+        <span class="task__number">{{{ title }}}</span>
+
+        <div class="task__text">{{{ text }}}</div>
+
+        <div class="task__input">{{{ input }}}</div>
+    </div>
+    {{/tasks}}
+</script>
+
 <script src="js/main.js"></script>
+
 
 </body>
 </html>
