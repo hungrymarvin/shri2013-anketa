@@ -36,6 +36,7 @@ $('input[type="radio"]').click(function () {
 $('input, textarea').keyup(function () {
 
     redrawTask(this);
+
 })
 
 $('input, textarea').focus(function () {
@@ -43,7 +44,6 @@ $('input, textarea').focus(function () {
     var task = $(this).closest('.tasks__task');
 
     $(task).addClass('pending').removeClass('collapsed');
-    $(task).next().removeClass('collapsed');
     redrawTask(this);
 })
 
@@ -150,6 +150,8 @@ function redrawTask(element) {
     switch (isValidInputValue(element)) {
         case 0:
             $(element).closest('.tasks__task').addClass('success');
+            var task = $(element).closest('.tasks__task');
+            $(task).next().removeClass('collapsed');
             break;
 
         case 1:
@@ -212,22 +214,20 @@ function isValidInputValue(element) {
                     return 2;
                 }
                 break;
-            case "a5_1", "a5_2", "a5_3":
-                if (!$('#a5_1').prop("checked") && !$('#a5_2').prop("checked") && !$('#a5_3').prop("checked")) {
-                    return 1;
+
+            case "a5_1":
+            case "a5_2":
+            case "a5_3":
+                if ($('#a5_1').prop("checked") || $('#a5_2').prop("checked") || $('#a5_3').prop("checked")) {
+                    return 0;
                 }
                 else {
-                    if ($('#a5_1').prop("checked") || $('#a5_2').prop("checked") || $('#a5_3').prop("checked")) {
-                        return 0;
-                    }
-                    else {
-                        return 2;
-                    }
+                    return 1;
                 }
                 break;
 
-
             default:
+                console.log(element.id);
                 return 0;
         }
     }
