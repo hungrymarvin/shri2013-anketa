@@ -18,8 +18,6 @@ $('.tasks__task').click(function () {
         }, 300);
     }
     else {
-
-
         $(this).removeClass('collapsed');
         $(task_text).css('white-space', 'initial');
         $(this).find('input').focus();
@@ -41,11 +39,10 @@ $('input, textarea').keydown(function (e) {
 
     var tabKeyCode = 9;
     if (e.keyCode != tabKeyCode) {
-        console.log(ctrlDown);
         var task = $(this).closest('.tasks__task');
         $(task).addClass('pending').removeClass('success').removeClass('error');
+        $(task).next().removeClass('collapsed');
     }
-
 
 }).keyup(function (e) {
         if (ctrlDown && (e.keyCode == vKey)) {
@@ -57,7 +54,6 @@ $('input, textarea').keydown(function (e) {
 $('input, textarea').focus(function () {
 
     var task = $(this).closest('.tasks__task');
-
     $(task).addClass('pending').removeClass('collapsed');
     redrawTask(this);
 })
@@ -65,8 +61,12 @@ $('input, textarea').focus(function () {
 $('input, textarea').focusout(function () {
 
     $(this).closest('.tasks__task').removeClass('pending');
-    if (redrawTask(this) == 2)
-        $(this).focus().select();
+    redrawTask(this);
+})
+
+$('input[type="radio"]').click(function () {
+    var task = $(this).closest('.tasks__task');
+    $(task).next().removeClass('collapsed');
 })
 
 $('#tasks-form').submit(function (e) {
@@ -173,8 +173,7 @@ function redrawTask(element) {
     switch (validationResult) {
         case 0:
             $(element).closest('.tasks__task').removeClass('error').addClass('success');
-            var task = $(element).closest('.tasks__task');
-            $(task).next().removeClass('collapsed');
+
             break;
 
         case 1:
