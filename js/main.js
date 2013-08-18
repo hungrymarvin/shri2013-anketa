@@ -5,6 +5,8 @@ var result = template(data);
 $('#tasks-form').prepend(result);
 
 var needToFillAllOfThem = true;
+var ctrlDown = false;
+var ctrlKey = 17, vKey = 86;
 
 $('.tasks__task').click(function () {
     var task_text = $(this).find('.task__text');
@@ -33,12 +35,24 @@ $('input[type="radio"]').click(function () {
 })
 
 
-$('input, textarea').keyup(function () {
+$('input, textarea').keydown(function (e) {
 
-    if ($(this).closest('.tasks__task').hasClass('error'))
-        redrawTask(this);
+    if (e.keyCode == ctrlKey) ctrlDown = true;
 
-})
+    var tabKeyCode = 9;
+    if (e.keyCode != tabKeyCode) {
+        console.log(ctrlDown);
+        var task = $(this).closest('.tasks__task');
+        $(task).addClass('pending').removeClass('success').removeClass('error');
+    }
+
+
+}).keyup(function (e) {
+        if (ctrlDown && (e.keyCode == vKey)) {
+            redrawTask(this);
+        }
+        if (e.keyCode == ctrlKey) ctrlDown = false;
+    });
 
 $('input, textarea').focus(function () {
 
@@ -55,19 +69,24 @@ $('input, textarea').focusout(function () {
         $(this).focus().select();
 })
 
-$('#tasks-form').submit(function () {
+$('#tasks-form').submit(function (e) {
+
+    e.preventDefault();
 
     var result = checkForm();
 
     if (result) {
         result.focus().select();
-        $(result).closest('.tasks__task').addClass('error').removeClass('collapsed')
+        $(result).closest('.tasks__task').addClass('error').removeClass('collapsed');
+        $('#tasks-form').submit();
+    }
+    else {
         return false;
     }
-    else
-        return true;
+})
 
-
+$('.tasks__button').hover(function () {
+    checkFormSilent();
 })
 
 function checkForm() {
@@ -78,9 +97,10 @@ function checkForm() {
     $('input, textarea').each(function () {
 
         var tmp = isValidInputValue(this);
-        if ((foundErrorFlag == 0) || (tmp > foundErrorFlag)) {
+        if (tmp > foundErrorFlag) {
             foundErrorFlag = tmp;
             errorElement = this;
+
         }
 
         if ((foundErrorFlag == 1) && (!needToFillAllOfThem))
@@ -172,7 +192,7 @@ function redrawTask(element) {
 
 function isValidInputValue(element) {
 
-    if (($(element).val() == '') || (($(element).attr('type') == 'radio') && !$(element).prop("checked"))) {
+    if ($(element).val() == '') {
         return 1;
     }
     else {
