@@ -166,14 +166,14 @@ function redrawTask(element) {
 }
 
 function isValidInputValue(element) {
-    if ($(element).val() == '') {
+    if (($(element).val() == '') || ($(element).val().length < 3)) {
         return 1;
     }
     else {
         switch (element.id) {
             case "q1":
                 if (!isNaN($(element).val())) {
-                    if (($(element).val() > 1940) && ($(element).val() < new Date().getFullYear()))
+                    if (($(element).val() > 1940) && ($(element).val() < new Date().getFullYear() + 1))
                         return 0;
                     else
                         return 2;
@@ -197,7 +197,8 @@ function isValidInputValue(element) {
                 }
                 break;
 
-            case "q13", "q14":
+            case "q13":
+            case "q14":
                 if (($(element).val().indexOf('github.com/') != -1) || ($(element).val().indexOf('jsfiddle.net/') != -1)) {
                     return 0;
                 }
