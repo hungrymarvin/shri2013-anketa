@@ -228,7 +228,6 @@ function isValidInputValue(element) {
                 break;
 
             default:
-                console.log(element.id);
                 return 0;
         }
     }
