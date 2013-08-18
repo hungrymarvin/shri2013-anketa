@@ -35,7 +35,7 @@ $('input[type="radio"]').click(function () {
 
 $('input, textarea').keyup(function () {
 
-    redrawTask(this);
+    //redrawTask(this);
 
 })
 
@@ -50,7 +50,8 @@ $('input, textarea').focus(function () {
 $('input, textarea').focusout(function () {
 
     $(this).closest('.tasks__task').removeClass('pending');
-    redrawTask(this);
+    if (redrawTask(this) == 2)
+        $(this).focus().addClass('pending');
 })
 
 $('#tasks-form').submit(function () {
@@ -147,9 +148,10 @@ function checkFormSilent() {
 function redrawTask(element) {
 
     checkFormSilent();
-    switch (isValidInputValue(element)) {
+    var validationResult = isValidInputValue(element);
+    switch (validationResult) {
         case 0:
-            $(element).closest('.tasks__task').addClass('success');
+            $(element).closest('.tasks__task').removeClass('error').addClass('success');
             var task = $(element).closest('.tasks__task');
             $(task).next().removeClass('collapsed');
             break;
@@ -159,15 +161,17 @@ function redrawTask(element) {
             break;
 
         case 2:
-            $(element).closest('.tasks__task').addClass('error');
+            $(element).closest('.tasks__task').removeClass('success').addClass('error');
             break;
 
     }
+
+    return validationResult;
 }
 
 function isValidInputValue(element) {
 
-    if (($(element).val() == '') || ($(element).attr('type') != 'radio' ? $(element).val().length < 3 : !$(element).prop("checked"))) {
+    if (($(element).val() == '') || (($(element).attr('type') == 'radio') && !$(element).prop("checked"))) {
         return 1;
     }
     else {
