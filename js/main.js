@@ -20,7 +20,7 @@ $('.tasks__task').click(function () {
     else {
         $(this).removeClass('collapsed');
         $(task_text).css('white-space', 'initial');
-        $(this).find('input').focus();
+        $(this).find('input, textarea').focus();
     }
 })
 
@@ -55,7 +55,6 @@ $('input, textarea').focus(function () {
 
     var task = $(this).closest('.tasks__task');
     $(task).addClass('pending').removeClass('collapsed');
-    redrawTask(this);
 })
 
 $('input, textarea').focusout(function () {
@@ -69,19 +68,21 @@ $('input[type="radio"]').click(function () {
     $(task).next().removeClass('collapsed');
 })
 
-$('#tasks-form').submit(function (e) {
-
-    e.preventDefault();
+$('.tasks__button').click(function (e) {
 
     var result = checkForm();
 
-    if (result) {
-        result.focus().select();
-        $(result).closest('.tasks__task').addClass('error').removeClass('collapsed');
+    if (typeof result === "undefined") {
+
         $('#tasks-form').submit();
+
+        return true;
     }
     else {
+        result.focus().select();
+        $(result).closest('.tasks__task').removeClass('success').removeClass('pending').addClass('error');
         return false;
+
     }
 })
 
@@ -126,7 +127,7 @@ function checkForm() {
 
     }
     if (foundErrorFlag == 0)
-        return null;
+        return undefined;
     else
         return errorElement;
 }

@@ -50,7 +50,7 @@
 
         <div class="tasks__button">
             <div class="task__progress-indicator short"></div>
-            <input type="submit" value="Заполните анкету">
+            <div tabindex="18" class="tasks__button__btn">Заполните анкету</div>
         </div>
     </form>
 
@@ -68,6 +68,8 @@
         <div class="task__text">{{{ text }}}</div>
 
         <div class="task__input">{{{ input }}}</div>
+
+        <span class="task__hint">{{{ hint }}}</span>
     </div>
     {{/tasks}}
 </script>
