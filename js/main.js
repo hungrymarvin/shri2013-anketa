@@ -112,17 +112,17 @@ function checkForm() {
     switch (foundErrorFlag) {
         case 0:
             $('.tasks__button').addClass('success');
-            $('.tasks__button > input').val('Отправить!');
+            $('.tasks__button__btn').text('Отправить!');
             break;
 
         case 1:
             $('.tasks__button').removeClass('success').removeClass('error');
-            $('.tasks__button > input').val('Заполните анкету');
+            $('.tasks__button__btn').text('Заполните анкету');
             break;
 
         case 2:
             $('.tasks__button').addClass('error');
-            $('.tasks__button > input').val('Есть ошибки');
+            $('.tasks__button__btn').text('Есть ошибки');
             break;
 
     }
@@ -151,17 +151,17 @@ function checkFormSilent() {
     switch (foundErrorFlag) {
         case 0:
             $('.tasks__button').addClass('success');
-            $('.tasks__button > input').val('Отправить!');
+            $('.tasks__button__btn').text('Отправить!');
             break;
 
         case 1:
             $('.tasks__button').removeClass('success').removeClass('error');
-            $('.tasks__button > input').val('Заполните анкету');
+            $('.tasks__button__btn').text('Заполните анкету');
             break;
 
         case 2:
             $('.tasks__button').addClass('error');
-            $('.tasks__button > input').val('Есть ошибки');
+            $('.tasks__button__btn').text('Есть ошибки');
             break;
 
     }
